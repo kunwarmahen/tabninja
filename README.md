@@ -121,9 +121,18 @@ Future enhancement
 4. Do a better job of extracting content from webpage
 5. Add logic to connect to OpenAI or Claude or Gemini
 6. Convert extension into sidepanel
+7. Local Vector Solution creates Embedding stores in the local browser storage which has a limit to store max of 10 MB and you will eventually run out of space, so logic to remove older content
+8. Logic to remove older content from remote vector database
+9. History of questions asked and generated answers
+
+
+I hope I have captured all the steps but if I have missed something do point out.
+
+I am assuming the user of this is technically savvy but happy to help anyone who face the same challenge as me (managing tabs) and I am open to troubleshoot in limited fasion. 
 
 
 
+Please feel free to enchance the code and send the pull request
 
-Local Vector Solution creates Embedding stores emm
+If you like the project, please give it a star
    
