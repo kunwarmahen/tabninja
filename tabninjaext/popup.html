@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab Crawler</title>
+    <style>
+      :root {
+        --primary-color: #4299e1;
+        --background-color: #f5f5f5;
+        --input-background: rgb(213, 248, 246);
+        --chat-background: rgb(212, 212, 212);
+        --border-color: #e2e8f0;
+        --text-color: #2d3748;
+        --placeholder-color: #a0aec0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        min-width: 320px;
+        min-height: 480px;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .container {
+        padding: 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      #settings-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+
+      #settings-button:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      #settings-button img {
+        width: 20px;
+        height: 20px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+      }
+
+      #settings-button:hover img {
+        opacity: 1;
+      }
+
+      #chat {
+        flex-grow: 1;
+        background-color: var(--chat-background);
+        border-radius: 8px;
+        margin: 0.5rem 0 1rem 0;
+        padding: 1rem;
+        overflow-y: auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e0 transparent;
+      }
+
+      #chat::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      #chat::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      #chat::-webkit-scrollbar-thumb {
+        background-color: #cbd5e0;
+        border-radius: 3px;
+      }
+
+      .message {
+        margin-bottom: 12px;
+        padding: 8px;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .message.You {
+        background-color: #ec8896;
+        margin-right: 20px;
+      }
+
+      .message.Auto-Bot {
+        background-color: #78b7d4;
+        margin-left: 20px;
+      }
+
+      .message.URL {
+        background-color: #78d4c5;
+        margin-left: 20px;
+      }
+
+      .message.Error {
+        background-color: #b84c4c;
+        color: #ecd1d1;
+      }
+
+      .message-paragraph {
+        margin: 0;
+        padding: 0;
+      }
+
+      .message-paragraph + .message-paragraph {
+        margin-top: 12px;
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: auto;
+      }
+
+      #input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+        background-color: var(--input-background);
+        resize: none;
+        min-height: 60px;
+        line-height: 1.5;
+        font-family: inherit;
+      }
+
+      #input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+      }
+
+      #input::placeholder {
+        color: var(--placeholder-color);
+      }
+
+      #send {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      #send:hover {
+        background-color: #3182ce;
+      }
+
+      #send:active {
+        background-color: #2b6cb0;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0.75rem;
+        }
+
+        #input {
+          font-size: 0.9rem;
+          padding: 0.6rem;
+        }
+
+        #send {
+          padding: 0.6rem 1.2rem;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="settings-button">
+        <img src="settings_icon.png" alt="Settings" />
+      </button>
+
+      <div id="chat"></div>
+
+      <div class="input-container">
+        <textarea
+          id="input"
+          placeholder="How can I help you?..."
+          rows="2"
+          autocomplete="off"
+          spellcheck="true"
+        ></textarea>
+        <button id="send">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Send
+        </button>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

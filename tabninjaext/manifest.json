@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Ninja",
+  "description": "Search through information in open tabs",
+  "version": "1.0",
+  "permissions": ["tabs", "scripting", "activeTab", "storage", "sidePanel"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "48": "icon.png"
+  },
+  "host_permissions": ["<all_urls>"]
+}
