@@ -85,9 +85,9 @@ You are all set to ask tabs (limitation: close the extension after setting value
 ![Ask question e.g. Local](https://github.com/user-attachments/assets/10422735-2c4a-4d0e-88a0-fcd6699a7031)
 
 
-If you decide to use local than you will need to configure you local service
+If you decide to use remote service than you will need to configure you remote service
 
-Run you local service code in side tabninjabackend
+Run you remote service code in side tabninjabackend
  
 I assume you have installed nodejs https://nodejs.org/en/download/package-manager
 
