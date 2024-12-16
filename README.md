@@ -55,8 +55,6 @@ You are all set to use it by clicking icon like
 ![See all extension](https://github.com/user-attachments/assets/572f62e6-a1d0-47ca-8ff9-ab5d6d489b26)
 
 
-![Click Extension](https://github.com/user-attachments/assets/0fc34eb4-73d1-4f11-bb2a-02af56bebd89)
-
 And also Pin
 
 ![Pin Extension](https://github.com/user-attachments/assets/3830f89b-1841-43a7-9504-55a1449b9126)
@@ -80,7 +78,11 @@ Make sure to save in both condition
 
 You are all set to ask tabs (limitation: close the extension after setting values by clicking anywhere and open it again and now it knows what to do and may be you need to do it open once more if it says it cannot find)
 
+Ask question e.g. Remote
+
 ![Ask question e.g. Remote](https://github.com/user-attachments/assets/fd5ee5d5-26bc-46fa-af6a-7cdc1f403dc9)
+
+Ask question e.g. Local
 
 ![Ask question e.g. Local](https://github.com/user-attachments/assets/10422735-2c4a-4d0e-88a0-fcd6699a7031)
 
